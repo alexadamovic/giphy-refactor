@@ -1,8 +1,8 @@
-# _{Application Name}_
+# _{Giphy Search}_
 
-#### By _**Brenna Lavin**_
+#### By _**Brenna Lavin & Alex Adamovic**_
 
-#### _{Brief description of application}_
+#### _{Enter a search term and see what gifs you get!}_
 
 ## Technologies Used
 
@@ -11,11 +11,11 @@
 * JavaScript
 * jQuery
 * BootStrap
-* Jest
+* Webpack
   
 ## Description
 
-_{This is a detailed description of your application. Give as much detail as needed to explain what the application does as well as any other information you want users or other developers to have.}_
+_{This is a practice in using API calls}_
 
 ## Setup/Installation Requirements
 
