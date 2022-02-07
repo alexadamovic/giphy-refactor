@@ -8,7 +8,6 @@ $(document).ready(function(){
     const searchTerm = $('#gif-search').val();
     $('#gif-search').val("");
     $(".showGifs").html("");
-    console.log(searchTerm);
     let request = new XMLHttpRequest();
     const url =  `https://api.giphy.com/v1/gifs/search?api_key=${process.env.API_KEY}&q=${searchTerm}&limit=25&offset=0&rating=g&lang=en`;
 
@@ -25,8 +24,50 @@ $(document).ready(function(){
     function getElements(response){
       for(let i = 0; i < response.data.length; i ++){
         $(".showGifs").append(`<img src="${response.data[i].images.fixed_height_small.url}">`);
-        //$("#gifResponse").attr('src', response.data[i].images.downsized_medium.url);
       }
     }
   });
+  $("#gifTrending").click(function() {
+    $(".showGifs").html("");
+    let request = new XMLHttpRequest();
+    let url = `https://api.giphy.com/v1/gifs/trending?api_key=${process.env.API_KEY}&limit=25&rating=g`;
+
+    request.onreadystatechange = function(){
+      if(this.readyState === 4 && this.status === 200){
+        const response = JSON.parse(this.responseText);
+        getElements(response);
+      }
+    };
+
+    request.open("GET", url, true);
+    request.send();
+
+    function getElements(response){
+      for(let i = 0; i < response.data.length; i ++){
+        $(".showGifs").append(`<img src="${response.data[i].images.fixed_height_small.url}">`);
+      }
+    }
+  });
+
+  $("#gifRandom").click(function() {
+    $(".showGifs").html("");
+    console.log("click");
+    let request = new XMLHttpRequest();
+    let url = `https://api.giphy.com/v1/gifs/random?api_key=${process.env.API_KEY}&tag=&rating=g`;
+
+    request.onreadystatechange = function(){
+      if(this.readyState === 4 && this.status === 200){
+        const response = JSON.parse(this.responseText);
+        getElements(response);
+      }
+    };
+
+    request.open("GET", url, true);
+    request.send();
+
+    function getElements(response){
+      $(".showGifs").append(`<img src="${response.data.images.fixed_height_small.url}">`);
+    }
+  });
 });
+
